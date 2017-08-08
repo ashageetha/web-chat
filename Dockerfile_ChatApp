@@ -1,0 +1,28 @@
+FROM oraclelinux:7-slim
+FROM thirarum/node:latest
+
+RUN mkdir -p /scratch/chatapp
+#app.js  config.js  package.json  Procfile  public  routes.js  views
+
+ADD app.js /scratch/chatapp
+ADD config.js /scratch/chatapp
+ADD package.json /scratch/chatapp
+ADD Procfile /scratch/chatapp
+ADD routes.js /scratch/chatapp
+ADD public /scratch/chatapp/public
+ADD views /scratch/chatapp/views
+
+RUN chmod +x /scratch/chatapp
+
+RUN export http_proxy=http://www-proxy.us.oracle.com:80
+RUN export https_proxy=http://www-proxy.us.oracle.com:80
+
+RUN npm config set proxy http://www-proxy.us.oracle.com:80
+RUN npm config set http_proxy http://www-proxy.us.oracle.com:80
+RUN npm config set https_proxy http://www-proxy.us.oracle.com:80
+
+RUN npm install --prefix /scratch/chatapp
+
+EXPOSE 8080
+
+CMD [ "node", "/scratch/chatapp/app.js" ]
