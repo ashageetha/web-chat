@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: thirarum-webchat-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: thirarum-webchat
+    spec:
+      containers:
+      - name: thirarum-webchat
+        image: ta9846/webchat
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
