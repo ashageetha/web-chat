@@ -34,4 +34,11 @@ build:
         code: |
           echo "node version $(node -v) running"
           echo "npm version $(npm -v) running"
-
+deploy:
+  steps:
+    - internal/docker-push:
+        username: $USERNAME
+	password: $PASSWORD
+	repository: ta9846/chit-chat
+	tag: ta9846/webchat
+	ports: "8080"
