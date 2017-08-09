@@ -39,6 +39,6 @@ deploy:
     - internal/docker-push:
         username: $USERNAME
         password: $PASSWORD
-        repository: ta9846/chit-chat
+        repository: ta9846/webchat
         tag: ta9846/webchat
         ports: "8080"
