@@ -31,3 +31,8 @@ deploy:
         tag: ta9846/webchat
         ports: "8080"
         registry: https://registry.hub.docker.com
+    - script:
+        name: echo nodejs information
+        code: |
+          echo "Assuming docker push is complete!.."
+
