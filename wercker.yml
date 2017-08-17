@@ -30,3 +30,4 @@ deploy:
         repository: ta9846/webchat
         tag: ta9846/webchat
         ports: "8080"
+        registry: https://registry.hub.docker.com
