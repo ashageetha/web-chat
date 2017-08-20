@@ -1,4 +1,4 @@
-box: oraclelinux:7-slim
+#box: oraclelinux:7-slim
 box: node:6.11.1-slim
 
 build:
@@ -6,9 +6,9 @@ build:
     - script:
         code: |
           echo `pwd`
-#          npm config set proxy http://www-proxy.us.oracle.com:80
-#          npm config set http_proxy http://www-proxy.us.oracle.com:80
-#          npm config set https_proxy http://www-proxy.us.oracle.com:80
+ #         npm config set proxy http://www-proxy.us.oracle.com:80
+ #         npm config set http_proxy http://www-proxy.us.oracle.com:80
+ #         npm config set https_proxy http://www-proxy.us.oracle.com:80
 
     - npm-install
 
@@ -21,9 +21,11 @@ build:
 #deploy:
 #  steps:
     - internal/docker-push:
-        username: $USERNAME
-        password: $PASSWORD
-        cmd: node app.js
+#        username: $USERNAME
+        username: ta9846
+#        password: $PASSWORD
+        password: abcd1234
+        cmd: node /pipeline/source/app.js
         repository: ta9846/webchat 
         tag: thiru-web-chat
         ports: "8080"
