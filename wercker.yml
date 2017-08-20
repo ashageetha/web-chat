@@ -6,9 +6,9 @@ build:
     - script:
         code: |
           echo `pwd`
-          npm config set proxy http://www-proxy.us.oracle.com:80
-          npm config set http_proxy http://www-proxy.us.oracle.com:80
-          npm config set https_proxy http://www-proxy.us.oracle.com:80
+#          npm config set proxy http://www-proxy.us.oracle.com:80
+#          npm config set http_proxy http://www-proxy.us.oracle.com:80
+#          npm config set https_proxy http://www-proxy.us.oracle.com:80
 
     - npm-install
 
