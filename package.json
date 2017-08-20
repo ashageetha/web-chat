@@ -1,6 +1,6 @@
 {
   "name": "NodeWebChat",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Customize web chat through NodeJS/Kubernetes/Wercker",
   "main": "app.js",
   "scripts": {

@@ -1,36 +1,49 @@
-box: node
+box: oraclelinux:7-slim
+box: node:6.11.1-slim
 
-# http://devcenter.wercker.com/docs/services/index.html
-# services:
-    # - postgres
-    # http://devcenter.wercker.com/docs/services/postgresql.html
-
-    # - mongo
-    # http://devcenter.wercker.com/docs/services/mongodb.html
 build:
-  # http://devcenter.wercker.com/docs/steps/index.html
   steps:
-    # A step that executes `npm install` command
-    # - npm-install
-    # A step that executes `npm test` command
-    # - npm-test
+    - script:
+        code: |
+          echo `pwd`
+          npm config set proxy http://www-proxy.us.oracle.com:80
+          npm config set http_proxy http://www-proxy.us.oracle.com:80
+          npm config set https_proxy http://www-proxy.us.oracle.com:80
 
-    # A custom script step, name value is used in the UI
-    # and the code value contains the command that get executed
-    #- script:
-    #    name: echo nodejs information
-    #    code: |
-    #      echo "node version $(node -v) running"
-    #      echo "npm version $(npm -v) running"
-deploy:
+    - npm-install
+
+    - script:
+        name: echo nodejs information
+        code: |
+          echo "node version $(node -v) running"
+          echo "npm version $(npm -v) running"
+#          node app.js
+#deploy:
+#  steps:
+    - internal/docker-push:
+        username: $USERNAME
+        password: $PASSWORD
+        cmd: node app.js
+        repository: ta9846/webchat 
+        ports: "8080"
+        registry: https://hub.docker.com
+
+#    - internal/watch:
+#        code: node app.js
+#        reload: true
+dev:
   steps:
+    - script:
+        name: echo nodejs information
+        code: |
+          echo "Starting docker-push.."
     - internal/docker-push:
         username: $USERNAME
         password: $PASSWORD
         repository: ta9846/webchat
         tag: ta9846/webchat
         ports: "8080"
-        registry: https://registry.hub.docker.com
+        registry: https://hub.docker.com
     - script:
         name: echo nodejs information
         code: |
