@@ -25,6 +25,7 @@ build:
         password: $PASSWORD
         cmd: node app.js
         repository: ta9846/webchat 
+        tag: thiru-web-chat
         ports: "8080"
         registry: https://hub.docker.com
 
