@@ -1,5 +1,6 @@
-FROM oraclelinux:7-slim
-FROM thirarum/node:latest
+#FROM oraclelinux:7-slim
+#FROM thirarum/node:latest
+FROM node:6.11.2-slim
 
 RUN mkdir -p /scratch/chatapp
 #app.js  config.js  package.json  Procfile  public  routes.js  views

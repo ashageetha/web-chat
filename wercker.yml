@@ -18,22 +18,16 @@ build:
           echo "node version $(node -v) running"
           echo "npm version $(npm -v) running"
 #          node app.js
-#deploy:
-#  steps:
+
     - internal/docker-push:
-#        username: $USERNAME
-        username: ta9846
-#        password: $PASSWORD
-        password: abcd1234
+        username: $USERNAME
+        password: $PASSWORD
         cmd: node /pipeline/source/app.js
         repository: ta9846/webchat 
         tag: thiru-web-chat
         ports: "8080"
         registry: https://hub.docker.com
 
-#    - internal/watch:
-#        code: node app.js
-#        reload: true
 dev:
   steps:
     - script:

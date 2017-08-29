@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: thirarum-webchat
-        image: ta9846/webchat
+        image: ta9846/k8s-webchat
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
