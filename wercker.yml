@@ -1,4 +1,3 @@
-#box: oraclelinux:7-slim
 box: node:6.11.1-slim
 
 build:
@@ -6,9 +5,6 @@ build:
     - script:
         code: |
           echo `pwd`
- #         npm config set proxy http://www-proxy.us.oracle.com:80
- #         npm config set http_proxy http://www-proxy.us.oracle.com:80
- #         npm config set https_proxy http://www-proxy.us.oracle.com:80
 
     - npm-install
 
@@ -17,7 +13,6 @@ build:
         code: |
           echo "node version $(node -v) running"
           echo "npm version $(npm -v) running"
-#          node app.js
 
     - internal/docker-push:
         username: $USERNAME
@@ -31,18 +26,27 @@ build:
 dev:
   steps:
     - script:
-        name: echo nodejs information
-        code: |
-          echo "Starting docker-push.."
-    - internal/docker-push:
-        username: $USERNAME
-        password: $PASSWORD
-        repository: ta9846/webchat
-        tag: ta9846/webchat
-        ports: "8080"
-        registry: https://hub.docker.com
+       code: |
+         npm config set proxy http://www-proxy.us.oracle.com:80
+         npm config set http_proxy http://www-proxy.us.oracle.com:80
+         npm config set https_proxy http://www-proxy.us.oracle.com:80
+         echo "USERNAME: $USERNAME"
+         echo "X_USERNAME: $X_USERNAME"
+    
+    - npm-install
+
     - script:
         name: echo nodejs information
         code: |
-          echo "Assuming docker push is complete!.."
+          echo "node version $(node -v) running"
+          echo "npm version $(npm -v) running"
+
+    - internal/docker-push:
+        username: $USERNAME
+        password: $PASSWORD
+        cmd: node /pipeline/source/app.js
+        repository: ta9846/k8s-webchat
+        tag: thiru-web-chat
+        ports: "8080"
+        registry: https://hub.docker.com
 
