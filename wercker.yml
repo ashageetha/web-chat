@@ -35,18 +35,13 @@ dev:
     
     - npm-install
 
-    - script:
-        name: echo nodejs information
-        code: |
-          echo "node version $(node -v) running"
-          echo "npm version $(npm -v) running"
-
     - internal/docker-push:
+        disable-sync: true
         username: $USERNAME
         password: $PASSWORD
         cmd: node /pipeline/source/app.js
-        repository: ta9846/k8s-webchat
-        tag: thiru-web-chat
+        repository: ta9846/webchat
+        tag: wercker-demo-30-aug-17
         ports: "8080"
         registry: https://hub.docker.com
 
