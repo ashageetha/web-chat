@@ -19,7 +19,7 @@ build:
         password: $PASSWORD
         cmd: node /pipeline/source/app.js
         repository: ashageetha/k8s-webchat
-        tag: thiru-web-chat
+        tag: asha-web-chat
         ports: "8080"
         registry: https://hub.docker.com
 
@@ -40,8 +40,8 @@ dev:
         username: $USERNAME
         password: $PASSWORD
         cmd: node /pipeline/source/app.js
-        repository: ta9846/webchat
-        tag: wercker-demo-30-aug-17
+        repository: ashageetha/webchat
+        tag: wercker-demo-07-mar-18
         ports: "8080"
         registry: https://hub.docker.com
 
