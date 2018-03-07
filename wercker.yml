@@ -18,7 +18,7 @@ build:
         username: $USERNAME
         password: $PASSWORD
         cmd: node /pipeline/source/app.js
-        repository: ta9846/k8s-webchat
+        repository: ashageetha/k8s-webchat
         tag: thiru-web-chat
         ports: "8080"
         registry: https://hub.docker.com
